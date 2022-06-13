@@ -1,28 +1,34 @@
-import 'package:project/modules/resources/data/i_repositories/i_repository.dart';
-import 'package:project/modules/resources/data/models/resource_model.dart';
-import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
-import 'package:project/modules/shared/failures/datasource_failure.dart';
-import 'package:project/modules/shared/failures/repository_failure.dart';
+import '../../data/i_repositories/i_repository.dart';
+import '../../data/models/resource_model.dart';
+import '../i_datasources/i_datasource.dart';
+import '../../../shared/failures/datasource_failure.dart';
 
 class ResourceRepository implements IRepository {
   final IDatasource _datasource;
 
   ResourceRepository(this._datasource);
 
-  ResourceModel _modelFromMap(Map<String, String> map) {
+  ResourceModel _modelFromMap(Map map) {
+    String? creatadeDate = map['resource']['created_at'];
+    String? updatedDate = map['resource']['updated_at'];
+    String resourceId = map['resource']['resource_id'];
+    String moduleId = map['resource']['module_id'];
+    String languageId = map['resource']['language_id'];
+    String value = map['resource']['value'];
+
     return ResourceModel(
-      createdDate: DateTime.parse(map['created_at']!),
-      updatedDate: DateTime.parse(map['updated_at']!),
-      resourceId: map['resource_id']!,
-      moduleId: map['module_id']!,
-      languageId: map['language_id']!,
-      value: map['value']!,
+      createdDate: (creatadeDate != null) ? DateTime.parse(creatadeDate) : null,
+      updatedDate: (updatedDate != null) ? DateTime.parse(updatedDate) : null,
+      resourceId: resourceId,
+      moduleId: moduleId,
+      languageId: languageId,
+      value: value,
     );
   }
 
   @override
   Future<List<ResourceModel>> getAllResources() async {
-    final List<Map<String, Map<String, String>>> response;
+    final List<dynamic> response;
     final List<ResourceModel> result;
     try {
       response = await _datasource.getAll();
@@ -30,17 +36,16 @@ class ResourceRepository implements IRepository {
       throw DatasourceFailure();
     }
 
-    try {
-      result = response
-          .expand(
-            (resources) => resources.values.map(
-              (resource) => _modelFromMap(resource),
-            ),
-          )
-          .toList();
-      return result;
-    } on Error {
-      throw RepositoryFailure();
-    }
+    // try {
+    result = response
+        .map(
+          (e) => _modelFromMap(e),
+        )
+        .toList();
+    return result;
+    // } on Error catch (e) {
+    //   print(e);
+    //   throw RepositoryFailure();
+    // }
   }
 }

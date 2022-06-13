@@ -1,6 +1,6 @@
 class ResourceEntity {
-  final DateTime createdDate;
-  final DateTime updatedDate;
+  final DateTime? createdDate;
+  final DateTime? updatedDate;
   final String resourceId;
   final String moduleId;
   final String languageId;
