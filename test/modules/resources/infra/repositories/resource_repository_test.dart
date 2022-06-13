@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:project/modules/resources/data/i_repositories/i_repository.dart';
+import 'package:project/modules/resources/data/i_repositories/i_get_repository.dart';
 import 'package:project/modules/resources/data/models/resource_model.dart';
 import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
 import 'package:project/modules/resources/infra/repositories/resource_online_repository.dart';
@@ -13,7 +13,7 @@ import '../../mock/mock_resource_response.dart';
 class MockDatasource extends Mock implements IDatasource {}
 
 void main() {
-  late IRepository repository;
+  late IGetRepository repository;
   late IDatasource datasource;
   setUp(() {
     datasource = MockDatasource();

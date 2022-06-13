@@ -1,9 +1,9 @@
-import '../../data/i_repositories/i_repository.dart';
+import '../../data/i_repositories/i_get_repository.dart';
 import '../../data/models/resource_model.dart';
 import '../i_datasources/i_datasource.dart';
 import '../../../shared/failures/datasource_failure.dart';
 
-class ResourceOnlineRepository implements IRepository {
+class ResourceOnlineRepository implements IGetRepository {
   final IDatasource _datasource;
 
   ResourceOnlineRepository(this._datasource);

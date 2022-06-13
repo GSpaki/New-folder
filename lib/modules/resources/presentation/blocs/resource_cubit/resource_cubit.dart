@@ -14,7 +14,7 @@ class ResourceCubit extends Cubit<ResourceState> {
   void getResources() async {
     emit(ResourceLoadingState());
 
-    final res = await getAllUsecase();
+    final res = await getAllUsecase.getAll();
 
     res.when(
       ok: (entitiesList) => emit(ResourceLoadedState(entitiesList)),

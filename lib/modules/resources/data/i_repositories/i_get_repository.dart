@@ -1,5 +1,5 @@
 import '../models/resource_model.dart';
 
-abstract class IRepository {
+abstract class IGetRepository {
   Future<List<ResourceModel>> getAllResources();
 }

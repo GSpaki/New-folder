@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:oxidized/oxidized.dart';
-import 'package:project/modules/resources/data/i_repositories/i_repository.dart';
+import 'package:project/modules/resources/data/i_repositories/i_get_repository.dart';
 import 'package:project/modules/resources/data/usecases/get_all_online_resources.dart';
 import 'package:project/modules/resources/domain/entities/resource_entity.dart';
 import 'package:project/modules/resources/domain/i_usecases/i_get_all_resources_usecase.dart';
@@ -10,11 +10,11 @@ import 'package:project/modules/shared/failures/repository_failure.dart';
 
 import '../../mock/mock_resource_model.dart';
 
-class MockRepository extends Mock implements IRepository {}
+class MockRepository extends Mock implements IGetRepository {}
 
 void main() {
   late IGetAllResourcesUsecase usecase;
-  late IRepository repository;
+  late IGetRepository repository;
 
   setUp(() {
     repository = MockRepository();
