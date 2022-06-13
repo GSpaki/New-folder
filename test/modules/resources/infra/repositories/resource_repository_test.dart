@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:project/modules/resources/data/i_repositories/i_get_repository.dart';
 import 'package:project/modules/resources/data/models/resource_model.dart';
-import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
+import 'package:project/modules/resources/infra/i_datasources/i_online_datasource.dart';
 import 'package:project/modules/resources/infra/repositories/resource_online_repository.dart';
 import 'package:project/modules/shared/failures/datasource_failure.dart';
 import 'package:project/modules/shared/failures/i_failure.dart';
@@ -10,11 +10,11 @@ import 'package:project/modules/shared/failures/repository_failure.dart';
 
 import '../../mock/mock_resource_response.dart';
 
-class MockDatasource extends Mock implements IDatasource {}
+class MockDatasource extends Mock implements IOnlineDatasource {}
 
 void main() {
   late IGetRepository repository;
-  late IDatasource datasource;
+  late IOnlineDatasource datasource;
   setUp(() {
     datasource = MockDatasource();
     repository = ResourceOnlineRepository(datasource);
@@ -61,7 +61,7 @@ void main() {
       final actual = repository.getAllResources();
 
       //assert
-      expect(actual, throwsA(isA<RepositoryFailure>()));
+      expect(actual, throwsA(isA<OnlineRepositoryFailure>()));
     },
   );
 }

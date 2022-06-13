@@ -1,3 +1,7 @@
 import 'i_failure.dart';
 
-class RepositoryFailure implements IFailure {}
+abstract class IRepositoryFailure implements IFailure {}
+
+class OnlineRepositoryFailure implements IRepositoryFailure {}
+
+class LocalRepositoryFailure implements IRepositoryFailure {}
