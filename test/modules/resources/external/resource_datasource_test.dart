@@ -2,14 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:project/modules/resources/external/resource_online_datasource.dart';
-import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
+import 'package:project/modules/resources/infra/i_datasources/i_online_datasource.dart';
 
 import '../mock/mock_resource_response.dart';
 
 class MockDio extends Mock implements Dio {}
 
 void main() {
-  late IDatasource datasource;
+  late IOnlineDatasource datasource;
   late Dio dio;
 
   setUp(() {

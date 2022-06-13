@@ -1,13 +1,13 @@
 import '../../../shared/failures/repository_failure.dart';
-import '../../data/i_repositories/i_get_repository.dart';
+import '../../data/i_repositories/i_get_and_load_repository copy.dart';
 import '../../data/models/resource_model.dart';
 import '../i_datasources/i_online_datasource.dart';
 import '../../../shared/failures/datasource_failure.dart';
 
-class ResourceOnlineRepository implements IGetRepository {
+class ResourceLocalRepository implements IGetandLoadRepository {
   final IOnlineDatasource _datasource;
 
-  ResourceOnlineRepository(this._datasource);
+  ResourceLocalRepository(this._datasource);
 
   ResourceModel _modelFromMap(Map map) {
     String? creatadeDate = map['resource']['created_at'];
@@ -45,7 +45,13 @@ class ResourceOnlineRepository implements IGetRepository {
           .toList();
       return result;
     } on Error {
-      throw OnlineRepositoryFailure();
+      throw LocalRepositoryFailure();
     }
+  }
+
+  @override
+  loadAllResources(List<ResourceModel> modelsList) {
+    // TODO: implement loadAllResources
+    throw UnimplementedError();
   }
 }

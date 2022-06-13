@@ -35,7 +35,7 @@ void main() {
     "Resource cubit should emit a loading state then a failure state when usecase returns failure",
     () async {
       //arrange
-      when(() => usecase.getAll()).thenAnswer((_) async => Result.err(RepositoryFailure()));
+      when(() => usecase.getAll()).thenAnswer((_) async => Result.err(OnlineRepositoryFailure()));
 
       //assert
       expectLater(cubit.stream, emitsInOrder([isA<ResourceLoadingState>(), isA<ResourceFailureState>()]));

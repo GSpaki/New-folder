@@ -38,7 +38,7 @@ void main() {
     "Usecase should return a failure when called unsuccessefully",
     () async {
       //arrange
-      when(() => repository.getAllResources()).thenThrow(RepositoryFailure());
+      when(() => repository.getAllResources()).thenThrow(OnlineRepositoryFailure());
 
       //act
       final actual = await usecase.getAll();

@@ -1,3 +1,3 @@
-abstract class IDatasource {
+abstract class IOnlineDatasource {
   Future<List<dynamic>> getAll();
 }

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '../infra/i_datasources/i_datasource.dart';
+import '../infra/i_datasources/i_online_datasource.dart';
 
-class ResourceOnlineDatasource implements IDatasource {
+class ResourceOnlineDatasource implements IOnlineDatasource {
   final Dio _dio;
 
   ResourceOnlineDatasource(this._dio);

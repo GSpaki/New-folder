@@ -18,7 +18,7 @@ class DatatableLoadedState implements DatatableState {
   bool? isValueAscending;
   DatatableLoadedState({
     required this.numberOfItems,
-    this.itemsPerPage = 5,
+    this.itemsPerPage = 10,
     this.currentPage = 1,
     this.filterLanguage = const [],
     this.searchedString,

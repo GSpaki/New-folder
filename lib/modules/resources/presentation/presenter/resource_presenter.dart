@@ -40,8 +40,10 @@ class StateDisplay extends StatelessWidget {
     }
     if (cubit.state is ResourceFailureState) {
       final failure = (cubit.state as ResourceFailureState).failure;
-      if (failure is RepositoryFailure) {
-        return (Text('repository failure'));
+      if (failure is OnlineRepositoryFailure) {
+        return (Text('online repository failure'));
+      } else if (failure is LocalRepositoryFailure) {
+        return (Text('local repository failure'));
       }
       return (Text('datasource failure'));
     }
