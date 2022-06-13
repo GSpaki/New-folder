@@ -32,6 +32,16 @@ class DatatableLoadedState implements DatatableState {
 
   int get lastPage => (numberOfItems ~/ itemsPerPage) + 1;
 
+  void clearFilters() {
+    searchedString = null;
+    isCreatedDateAscending = null;
+    isUpdatedDateAscending = null;
+    isResourceIdAscending = null;
+    isModuleIdAscending = null;
+    isLanguageIdAscending = null;
+    isValueAscending = null;
+  }
+
   DatatableLoadedState copyWith({
     int? numberOfItems,
     int? itemsPerPage,

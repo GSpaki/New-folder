@@ -11,3 +11,10 @@ class ShowLoadedDataEvent implements DatatableEvent {
 
   ShowLoadedDataEvent(this.numberOfItems);
 }
+
+class SortEvent implements DatatableEvent {
+  final String sortField;
+  final bool isAscending;
+
+  SortEvent(this.sortField, this.isAscending);
+}

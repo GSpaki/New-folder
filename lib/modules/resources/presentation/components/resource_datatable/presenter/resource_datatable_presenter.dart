@@ -21,17 +21,32 @@ class ResourceDatatablePresenter extends StatelessWidget {
       final List<ResourceEntity> cropedList = _cropList(entitiesList, bloc.state as DatatableLoadedState);
 
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          PreviousPageButton(),
-          NextPageButton(),
+          Row(
+            children: [
+              PreviousPageButton(),
+              NextPageButton(),
+            ],
+          ),
           DataTable(
-            columns: const [
-              DataColumn(label: Text('value')),
-              DataColumn(label: Text('language')),
-              DataColumn(label: Text('module')),
-              DataColumn(label: Text('resource')),
-              DataColumn(label: Text('created at')),
-              DataColumn(label: Text('updated at')),
+            columns: [
+              DataColumn(
+                  label: const Text('value'), onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('value', sortAscending))),
+              DataColumn(
+                  label: const Text('language'),
+                  onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('language', sortAscending))),
+              DataColumn(
+                  label: const Text('module'), onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('module', sortAscending))),
+              DataColumn(
+                  label: const Text('resource'),
+                  onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('resource', sortAscending))),
+              DataColumn(
+                  label: const Text('created at'),
+                  onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('created at', sortAscending))),
+              DataColumn(
+                  label: const Text('updated at'),
+                  onSort: (columnIndex, sortAscending) => bloc.add(SortEvent('updated at', sortAscending))),
             ],
             rows: cropedList
                 .map((entity) => DataRow(cells: [
@@ -61,7 +76,7 @@ class ResourceDatatablePresenter extends StatelessWidget {
     } else if (createdDateA == null) {
       return 1;
     } else {
-      return _compare(createdDateA, createdDateB, isDateAscending);
+      return _compare(createdDateA.toString(), createdDateB.toString(), isDateAscending);
     }
   }
 
@@ -74,11 +89,13 @@ class ResourceDatatablePresenter extends StatelessWidget {
   }
 
   int _sortState(a, b, DatatableLoadedState state) {
-    if (state.isCreatedDateAscending != null) {
-      return _compareNullableDateTime(a.createdDate, b.createdDate, state.isCreatedDateAscending!);
-    } else if (state.isUpdatedDateAscending != null) {
-      return _compareNullableDateTime(a.updatedDate, b.updatedDate, state.isCreatedDateAscending!);
-    } else if (state.isModuleIdAscending != null) {
+    //TODO: fix date sroting -> stackoverflow error
+    // if (state.isCreatedDateAscending != null) {
+    //   return _compareNullableDateTime(a.createdDate, b.createdDate, state.isCreatedDateAscending!);
+    // } else if (state.isUpdatedDateAscending != null) {
+    //   return _compareNullableDateTime(a.updatedDate, b.updatedDate, state.isUpdatedDateAscending!);
+    // } else
+    if (state.isModuleIdAscending != null) {
       return _compare(a.moduleId, b.moduleId, state.isModuleIdAscending!);
     } else if (state.isResourceIdAscending != null) {
       return _compare(a.resourceId, b.resourceId, state.isResourceIdAscending!);
