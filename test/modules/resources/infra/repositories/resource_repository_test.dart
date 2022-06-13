@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:project/modules/resources/data/i_repositories/i_repository.dart';
 import 'package:project/modules/resources/data/models/resource_model.dart';
 import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
-import 'package:project/modules/resources/infra/repositories/resource_repository.dart';
+import 'package:project/modules/resources/infra/repositories/resource_online_repository.dart';
 import 'package:project/modules/shared/failures/datasource_failure.dart';
 import 'package:project/modules/shared/failures/i_failure.dart';
 import 'package:project/modules/shared/failures/repository_failure.dart';
@@ -17,7 +17,7 @@ void main() {
   late IDatasource datasource;
   setUp(() {
     datasource = MockDatasource();
-    repository = ResourceRepository(datasource);
+    repository = ResourceOnlineRepository(datasource);
   });
   test(
     "Repository should return a list of models when called successefully",

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:project/modules/resources/external/resource_datasource.dart';
+import 'package:project/modules/resources/external/resource_online_datasource.dart';
 import 'package:project/modules/resources/infra/i_datasources/i_datasource.dart';
 
 import '../mock/mock_resource_response.dart';
@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     dio = MockDio();
-    datasource = ResourceDatasource(dio);
+    datasource = ResourceOnlineDatasource(dio);
   });
 
   test(

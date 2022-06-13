@@ -3,10 +3,10 @@ import '../../data/models/resource_model.dart';
 import '../i_datasources/i_datasource.dart';
 import '../../../shared/failures/datasource_failure.dart';
 
-class ResourceRepository implements IRepository {
+class ResourceOnlineRepository implements IRepository {
   final IDatasource _datasource;
 
-  ResourceRepository(this._datasource);
+  ResourceOnlineRepository(this._datasource);
 
   ResourceModel _modelFromMap(Map map) {
     String? creatadeDate = map['resource']['created_at'];

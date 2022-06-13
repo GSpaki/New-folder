@@ -21,7 +21,7 @@ void main() {
     "Resource cubit should emit a loading state then a loaded state when usecase returns a list of entities",
     () async {
       //arrange
-      when(() => usecase.call()).thenAnswer((_) async => Result.ok([mockResourceModel]));
+      when(() => usecase.getAll()).thenAnswer((_) async => Result.ok([mockResourceModel]));
 
       //assert
       expectLater(cubit.stream, emitsInOrder([isA<ResourceLoadingState>(), isA<ResourceLoadedState>()]));
@@ -35,7 +35,7 @@ void main() {
     "Resource cubit should emit a loading state then a failure state when usecase returns failure",
     () async {
       //arrange
-      when(() => usecase.call()).thenAnswer((_) async => Result.err(RepositoryFailure()));
+      when(() => usecase.getAll()).thenAnswer((_) async => Result.err(RepositoryFailure()));
 
       //assert
       expectLater(cubit.stream, emitsInOrder([isA<ResourceLoadingState>(), isA<ResourceFailureState>()]));

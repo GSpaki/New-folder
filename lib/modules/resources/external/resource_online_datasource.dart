@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 
 import '../infra/i_datasources/i_datasource.dart';
 
-class ResourceDatasource implements IDatasource {
+class ResourceOnlineDatasource implements IDatasource {
   final Dio _dio;
 
-  ResourceDatasource(this._dio);
+  ResourceOnlineDatasource(this._dio);
   @override
   Future<List<dynamic>> getAll() async {
     final Response<List> response;

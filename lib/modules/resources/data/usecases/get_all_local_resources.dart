@@ -5,12 +5,12 @@ import '../../domain/entities/resource_entity.dart';
 import '../../domain/i_usecases/i_get_all_resources_usecase.dart';
 import '../i_repositories/i_repository.dart';
 
-class GetAllResourcesUsecase implements IGetAllResourcesUsecase {
+class GetAllOnlineResourcesUsecase implements IGetAllResourcesUsecase {
   final IRepository repository;
 
-  GetAllResourcesUsecase(this.repository);
+  GetAllOnlineResourcesUsecase(this.repository);
   @override
-  Future<Result<List<ResourceEntity>, IFailure>> call() async {
+  Future<Result<List<ResourceEntity>, IFailure>> getAll() async {
     try {
       final result = await repository.getAllResources();
       return Result.ok(result);
